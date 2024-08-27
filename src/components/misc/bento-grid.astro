@@ -1,0 +1,18 @@
+---
+// BentoGrid.astro
+export interface Props {
+  images: string[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="grid gap-4 grid-cols-4 grid-rows-4">
+  {images.map((src, index) => (
+    <img
+      src={src}
+      alt={`Image ${index + 1}`}
+      class={`object-cover w-full h-full rounded-lg ${index === 0  || index === 5? 'col-span-2 row-span-2' : ''}`}
+    />
+  ))}
+</div>

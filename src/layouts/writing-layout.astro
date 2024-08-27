@@ -1,14 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Image from "astro/components/Image.astro";
-import { Header } from "@components/misc";
+import { BentoGrid, Header } from "@components/misc";
 import FormattedDate from "@components/misc/formatted-date.astro";
 import { BaseHead } from "@components/seo";
 import RootLayout from "@layouts/root-layout.astro";
 
 type Props = CollectionEntry<"places">["data"];
 
-const { title, description, pubDate, heroImage } = Astro.props;
+const { title, description, pubDate, heroImage, images } = Astro.props;
 ---
 
 <html lang="en">
@@ -47,10 +47,13 @@ const { title, description, pubDate, heroImage } = Astro.props;
         <!-- we're using the Image component from Astro to handle the image optimization -->
         <Image src={heroImage!} width={1200} height={800} alt={title} />
         <div
-          class="w-full prose prose-md my-12 prose-p:font-medium text-base dark:prose-invert prose-a:underline prose-a:bg-orange-50 prose-a:decoration-orange-500 items-center justify-center
-					dark:prose-a:bg-orange-950 dark:prose-a:decoration-orange-400 dark:prose-a:underline"
+          class="w-full prose prose-md my-12 prose-p:font-medium text-base dark:prose-invert prose-a:underline items-center justify-center
+					dark:prose-a:underline prose-a:text-gray-300 dark:prose-a:text-gray-300 hover:prose-a:text-white dark:hover:prose-a:text-white"
         >
           <slot />
+        <div>
+          <BentoGrid images={images} />
+        </div>
         </div>
       </article>
     </div>

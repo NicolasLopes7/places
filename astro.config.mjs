@@ -6,12 +6,16 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://www.sanju.sh",
-	integrations: [mdx(), sitemap({
+	site: "https://places.nicolaslopes.space",
+	integrations: [mdx({
+		syntaxHighlight: 'shiki',
+		shikiConfig: { theme: 'dracula' },
+		gfm: false,
+	}), sitemap({
 		changefreq: 'daily',
 		priority: 1,
 		lastmod: new Date().toISOString().split('T')[0]
-	}), tailwind()],
+	}), tailwind(),],
 	output: "server",
 	adapter: cloudflare(),
 });

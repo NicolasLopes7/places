@@ -7,9 +7,11 @@ import { SITE_TITLE } from "@data/index";
 import { SITE_DESCRIPTION } from "@data/index";
 import RootLayout from "@layouts/root-layout.astro";
 
-const places = (await getCollection("places")).sort(
-  (a, b) =>
-    (b?.data?.pubDate?.valueOf() || 0) - (a?.data?.pubDate?.valueOf() || 0)
+const places = (await getCollection("places")).reduce(
+  (acc, place) => ({
+    [place.data.country]: [...(acc[place.data.country] || []), place],
+  }),
+  {} as Record<string, any[]>
 );
 ---
 
@@ -31,16 +33,23 @@ const places = (await getCollection("places")).sort(
       >
         👋 hi stranger, Florianópolis <sub><i>🇧🇷 now!</i></sub>
       </h1>
-      <p class="text-lg mt-2">📍 Brazil</p>
-      {
-        places.map((place) => (
-          <Place
-            title={place.data.title}
-            date={place.data.pubDate}
-            slug={place.slug}
-          />
-        ))
-      }
+      <div class="mt-10">
+        {
+          Object.entries(places).map(([country, places]) => (
+            <h1 class="text-start text-2xl font-medium tracking-tight">
+              📍 {country}
+              <sub>🇧🇷</sub>
+              {places.map((place) => (
+                <Place
+                  title={place.data.title}
+                  date={place.data.pubDate}
+                  slug={place.slug}
+                />
+              ))}
+            </h1>
+          ))
+        }
+      </div>
     </div>
   </RootLayout>
 </html>
