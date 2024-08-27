@@ -1,26 +1,22 @@
-export const SITE_TITLE = "Sanju's Space";
-export const SITE_DESCRIPTION = "A internet space for Sanju.";
+export const SITE_TITLE = "Places";
+export const SITE_DESCRIPTION = "places I've been.";
 
 export interface MenuItem {
-	label: string;
-	url: string;
+  label: string;
+  url: string;
 }
 
 export const menuItems: MenuItem[] = [
-	{
-		label: "home",
-		url: "/",
-	},
-	{
-		label: "writings",
-		url: "/writings",
-	},
-	{
-		label: "thoughts",
-		url: "/thoughts",
-	},
-	{
-		label: "ships",
-		url: "/ships",
-	},
+  {
+    label: "now",
+    url: "/",
+  },
+  {
+    label: "places",
+    url: "/places",
+  },
+  {
+    label: "go back home",
+    url: "https://nicolaslopes.space/",
+  },
 ];

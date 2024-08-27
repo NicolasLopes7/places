@@ -1,15 +1,13 @@
 ---
-import { getCollection } from "astro:content";
+import Place from "@components/place.astro";
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
-import Place from "@components/place.astro";
-import { SITE_TITLE } from "@data/index";
-import { SITE_DESCRIPTION } from "@data/index";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
+import { getCollection } from "astro:content";
 import RootLayout from "@layouts/root-layout.astro";
 
 const places = (await getCollection("places")).sort(
-  (a, b) =>
-    (b?.data?.pubDate?.valueOf() || 0) - (a?.data?.pubDate?.valueOf() || 0)
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
@@ -22,16 +20,10 @@ const places = (await getCollection("places")).sort(
       image="/images/ogimage.png"
     />
   </head>
-
   <RootLayout>
-    <div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
+    <div id="Header+title" class="flex flex-col w-full gap-6 max-w-xl">
       <Header />
-      <h1
-        class="w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]"
-      >
-        👋 hi stranger, Florianópolis <sub><i>🇧🇷 now!</i></sub>
-      </h1>
-      <p class="text-lg mt-2">📍 Brazil</p>
+      <h1 class="w-full text-7xl font-medium tracking-tight">places</h1>
       {
         places.map((place) => (
           <Place
