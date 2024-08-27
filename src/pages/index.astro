@@ -39,7 +39,6 @@ const places = (await getCollection("places")).reduce(
           Object.entries(places).map(([country, places]) => (
             <h1 class="text-start text-2xl font-medium tracking-tight">
               📍 {country}
-              <sub>🇧🇷</sub>
               {places.map((place) => (
                 <Place
                   title={place.data.title}
