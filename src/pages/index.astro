@@ -9,6 +9,7 @@ import RootLayout from "@layouts/root-layout.astro";
 
 const places = (await getCollection("places")).reduce(
   (acc, place) => ({
+    // @ts-ignore
     [place.data.country]: [...(acc[place.data.country] || []), place],
   }),
   {} as Record<string, any[]>

@@ -14,8 +14,8 @@ const { title, description, pubDate, heroImage, images } = Astro.props;
 <html lang="en">
   <head>
     <BaseHead
-      title={title}
-      description={description}
+      title={title!}
+      description={description!}
       image="/images/ogimage.png"
     />
   </head>
@@ -34,7 +34,7 @@ const { title, description, pubDate, heroImage, images } = Astro.props;
           {title}
         </h1>
         <p class="w-full text-start text-gray-500 font-medium">
-          <FormattedDate date={pubDate.toString()} />
+          <FormattedDate date={pubDate!.toString()} />
         </p>
         <p
           class="w-full text-start font-medium text-gray-700 dark:text-gray-300"
@@ -45,14 +45,14 @@ const { title, description, pubDate, heroImage, images } = Astro.props;
           {description}
         </p>
         <!-- we're using the Image component from Astro to handle the image optimization -->
-        <Image src={heroImage!} width={1200} height={800} alt={title} />
+        <Image src={heroImage!} width={1200} height={800} alt={title!} />
         <div
           class="w-full prose prose-md my-12 prose-p:font-medium text-base dark:prose-invert prose-a:underline items-center justify-center
 					dark:prose-a:underline prose-a:text-gray-300 dark:prose-a:text-gray-300 hover:prose-a:text-white dark:hover:prose-a:text-white"
         >
           <slot />
         <div>
-          <BentoGrid images={images} />
+          <BentoGrid images={images as string[]} />
         </div>
         </div>
       </article>

@@ -19,9 +19,9 @@ export const GET: APIRoute = async () => {
           (post) => `
         <url>
           <loc>${
-            new URL("/places/" + post.slug, import.meta.env.SITE).href
+            new URL(`/places/${post.slug}`, import.meta.env.SITE).href
           }</loc>
-          <lastmod>${post.data.pubDate.toISOString()}</lastmod>
+          <lastmod>${post.data?.pubDate?.toISOString()}</lastmod>
         <changefreq>daily</changefreq>
           <priority>1.0</priority>
         </url>
